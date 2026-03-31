@@ -51,7 +51,8 @@ jobs:
     - name: Run Bandit security scan
       run: |
         pip install bandit
-        bandit -r src/ -f json -o bandit-report.json
+        # B324 excluded: MD5/SHA1 used for file identification, not cryptography
+        bandit -r src/ -f json -o bandit-report.json --skip B324
 
     - name: Upload security report
       uses: actions/upload-artifact@v4

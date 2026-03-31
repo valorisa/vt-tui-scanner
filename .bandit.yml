@@ -1,0 +1,15 @@
+# Bandit configuration for VT TUI Scanner
+# https://bandit.readthedocs.io/en/latest/config.html
+
+# Skip tests that are not relevant for this project
+skips:
+  - B324  # hashlib weak hash (MD5/SHA1 used for file ID, not crypto)
+  - B101  # assert_used (acceptable in test files)
+
+# Exclude test directory from security scan
+exclude_dirs:
+  - tests
+
+# Set minimum severity level to report
+severity: medium
+confidence: medium
