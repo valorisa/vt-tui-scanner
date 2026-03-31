@@ -5,7 +5,7 @@ File scanning functionality with directory monitoring.
 import json
 import hashlib
 from pathlib import Path
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Any
 from datetime import datetime
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -171,3 +171,4 @@ class FileScanner:
         """Export scan results to file."""
         exporter = ExportManager()
         return exporter.export(results, format, output_path)
+
