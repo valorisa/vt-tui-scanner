@@ -1,4 +1,9 @@
 # 🛡️ VT TUI Scanner
+[![CI](https://github.com/valorisa/VT-TUI-Scanner/actions/workflows/ci.yml/badge.svg)](https://github.com/valorisa/VT-TUI-Scanner/actions/workflows/ci.yml)
+[![Security](https://github.com/valorisa/VT-TUI-Scanner/actions/workflows/ci.yml/badge.svg?job=security-scan)](https://github.com/valorisa/VT-TUI-Scanner/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+
 
 [![CI](https://github.com/valorisa/vt-tui-scanner/actions/workflows/ci.yml/badge.svg)](https://github.com/valorisa/vt-tui-scanner/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -512,3 +517,4 @@ Ce projet est distribué sous licence **MIT** - voir le fichier [LICENSE](LICENS
 [Faire un Star](https://github.com/valorisa/vt-tui-scanner) | [Fork](https://github.com/valorisa/vt-tui-scanner/fork) | [Issues](https://github.com/valorisa/vt-tui-scanner/issues)
 
 </div>
+
