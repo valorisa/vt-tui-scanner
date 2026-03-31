@@ -83,7 +83,9 @@ class FileScanner:
             return None
             
         try:
-            file_hash = self.vt_client.calculate_file_hash(str(file_path))["sha256"]
+            # CORRECTION: file_hashes est un dict, file_hash est la valeur sha256
+            file_hashes = self.vt_client.calculate_file_hash(str(file_path))
+            file_hash = file_hashes["sha256"]
             
             if self._is_already_scanned(file_hash):
                 logger.info(f"File already scanned recently: {file_path}")
@@ -92,14 +94,16 @@ class FileScanner:
             report = self.vt_client.get_file_report(file_hash)
             
             if report.get("data"):
+                # CORRECTION: file_hash est déjà une string, pas un dict
                 result = ScanResult.from_api_response(
-                    report, "file", str(file_path), file_hash["sha256"]
+                    report, "file", str(file_path), file_hash
                 )
             else:
                 logger.info(f"Uploading file for scan: {file_path}")
                 scan_response = self.vt_client.scan_file(str(file_path))
+                # CORRECTION: file_hash est déjà une string, pas un dict
                 result = ScanResult.from_api_response(
-                    scan_response, "file", str(file_path), file_hash["sha256"]
+                    scan_response, "file", str(file_path), file_hash
                 )
                 
             self._record_scan(file_hash, result)
