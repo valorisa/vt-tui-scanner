@@ -1,7 +1,10 @@
 # 🛡️ VT TUI Scanner
 [![CI](https://github.com/valorisa/VT-TUI-Scanner/actions/workflows/ci.yml/badge.svg)](https://github.com/valorisa/VT-TUI-Scanner/actions/workflows/ci.yml)
+[![Security](https://github.com/valorisa/VT-TUI-Scanner/actions/workflows/ci.yml/badge.svg?job=security-scan)](...)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Stars](https://img.shields.io/github/stars/valorisa/VT-TUI-Scanner)](https://github.com/valorisa/VT-TUI-Scanner/stargazers)
+[![Forks](https://img.shields.io/github/forks/valorisa/VT-TUI-Scanner)](https://github.com/valorisa/VT-TUI-Scanner/network/members)
 
 ## 📋 Description Détaillée
 
