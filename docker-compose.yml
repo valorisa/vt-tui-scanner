@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  vt-scanner:
+    build:
+      context: .
+      target: production
+    environment:
+      - VT_API_KEY=${VT_API_KEY}
+      - LOG_LEVEL=INFO
+    volumes:
+      - ./exports:/app/exports
+      - ./scan_history.json:/app/scan_history.json
+    restart: unless-stopped
+
+  vt-scanner-dev:
+    build:
+      context: .
+      target: dev
+    environment:
+      - VT_API_KEY=${VT_API_KEY}
+      - LOG_LEVEL=DEBUG
+    volumes:
+      - .:/app
+      - ./exports:/app/exports
+    command: pytest tests/ -v

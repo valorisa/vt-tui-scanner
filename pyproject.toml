@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vt-tui-scanner"
+version = "1.0.0"
+description = "VirusTotal TUI Scanner - Cross-platform terminal interface for VirusTotal"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "DevSecOps Community", email = "community@example.com"}
+]
+keywords = ["virustotal", "security", "scanner", "tui", "malware"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "textual>=0.47.0",
+    "rich>=13.0.0",
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0.0",
+    "watchdog>=3.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-mock>=3.11.0",
+    "pytest-cov>=4.1.0",
+    "bandit>=1.7.0",
+    "flake8>=6.1.0",
+    "black>=23.0.0",
+    "mypy>=1.5.0",
+]
+
+[project.scripts]
+vt-tui-scanner = "src.main:main"
+
+[project.urls]
+Homepage = "https://github.com/valorisa/vt-tui-scanner"
+Repository = "https://github.com/valorisa/vt-tui-scanner"
+Issues = "https://github.com/valorisa/vt-tui-scanner/issues"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "-v --cov=src --cov-report=term-missing"
+
+[tool.black]
+line-length = 100
+target-version = ['py39', 'py310', 'py311', 'py312']
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
