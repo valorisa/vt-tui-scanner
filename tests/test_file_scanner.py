@@ -17,9 +17,13 @@ class TestFileScanner:
     def mock_vt_client(self):
         """Create mock VT client."""
         client = Mock()
-        client.calculate_file_hash.return_value = {
-            "sha256": "abc123def456"
-        }
+        
+        # Return different hash based on file path for realistic testing
+        def mock_calculate_hash(file_path):
+            import hashlib
+            return {"sha256": hashlib.md5(str(file_path).encode()).hexdigest()}
+        
+        client.calculate_file_hash.side_effect = mock_calculate_hash
         client.get_file_report.return_value = {
             "data": {
                 "attributes": {
@@ -56,13 +60,16 @@ class TestFileScanner:
         test_file = tmp_path / "test.txt"
         test_file.write_text("test content")
         
+        # First scan
         file_scanner.scan_file(test_file)
         
+        # Second scan should return None (already scanned)
         result = file_scanner.scan_file(test_file)
         assert result is None
         
     def test_scan_directory(self, file_scanner, tmp_path):
         """Test directory scanning."""
+        # Create test files
         for i in range(3):
             (tmp_path / f"file{i}.txt").write_text(f"content {i}")
             

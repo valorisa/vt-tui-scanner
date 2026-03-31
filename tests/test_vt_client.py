@@ -34,9 +34,9 @@ class TestVTClient:
             with pytest.raises(ValueError):
                 VTClient()
                 
-    @patch("src.scanner.vt_client.requests.Session")
-    def test_get_file_report(self, mock_session, vt_client):
+    def test_get_file_report(self, vt_client):
         """Test file report retrieval."""
+        # Mock the session instance directly
         mock_response = MagicMock()
         mock_response.status_code = 200
         mock_response.json.return_value = {
@@ -46,31 +46,29 @@ class TestVTClient:
                 }
             }
         }
-        mock_session.return_value.get.return_value = mock_response
+        vt_client.session.get = Mock(return_value=mock_response)
         
         result = vt_client.get_file_report("test_hash")
         
         assert "data" in result
-        mock_session.return_value.get.assert_called_once()
+        vt_client.session.get.assert_called_once()
         
-    @patch("src.scanner.vt_client.requests.Session")
-    def test_get_file_report_429(self, mock_session, vt_client):
+    def test_get_file_report_429(self, vt_client):
         """Test rate limit handling."""
         mock_response = MagicMock()
         mock_response.status_code = 429
         
-        mock_session.return_value.get.return_value = mock_response
+        vt_client.session.get = Mock(return_value=mock_response)
         
         with pytest.raises(RateLimitExceeded):
             vt_client.get_file_report("test_hash")
             
-    @patch("src.scanner.vt_client.requests.Session")
-    def test_get_file_report_401(self, mock_session, vt_client):
+    def test_get_file_report_401(self, vt_client):
         """Test invalid API key handling."""
         mock_response = MagicMock()
         mock_response.status_code = 401
         
-        mock_session.return_value.get.return_value = mock_response
+        vt_client.session.get = Mock(return_value=mock_response)
         
         with pytest.raises(ValueError, match="Invalid API key"):
             vt_client.get_file_report("test_hash")
